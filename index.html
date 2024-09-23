@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your perfect party with Mystes AS From themed birthdays to elegant corporate events, we make every moment memorable.">
+    <meta name="keywords" content="party planning, event management, birthday parties, corporate events, themed events">
+    <title>Mystes AS - Exceptional Party Planning Services</title>
+    <link rel="canonical" href="https://yourdomain.com/">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <style>
+        /* Spinner Styles */
+        .spinner {
+            display: inline;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { -webkit-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+            to { -webkit-transform: rotate(360deg); }
+        }
+
+        /* Hide content when loading */
+        .loading #dynamic-content {
+            visibility: hidden;
+        }
+
+        /* Show spinner when loading */
+        .loading .spinner {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+<nav class="bg-neutral-800 p-3">
+    <div class="container mx-auto flex justify-center space-x-4">
+        <a href="#" hx-get="/arrangementer.html" hx-target="#dynamic-content" hx-swap="innerHTML" class="text-white hover:text-purple-200">Arrangementer</a>
+        <a href="#" hx-get="/contact.html" hx-target="#dynamic-content" hx-swap="innerHTML" class="text-white hover:text-purple-200">Om</a>
+    </div>
+</nav>
+<div class="relative">
+    <!-- Background Image -->
+    <img src="/public/img/image%20(6).jpg" alt="Glow Event" class="w-full h-screen object-cover">
+    <!-- Overlay with Text -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end">
+        <div class="text-center mb-16">
+            <h1 class="text-white text-3xl font-bold">Odderøyhallen</h1>
+            <p class="text-white text-lg mt-2">15. november - VGS</p>
+            <p class="text-white text-lg">16. november - Ungdomsskole</p>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="container mx-auto p-4 flex-grow">
+    <section id="home" class="text-left my-10">
+        <details class="border-2 border-purple-700 rounded-lg p-4">
+            <summary class="cursor-pointer list-none">
+                <h2 class="text-2xl font-bold text-purple-700 hover:underline">Neon Party for VGS-elever!</h2>
+            </summary>
+            <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                <p class="text-gray-700">
+                    Fredag 15. november kjører vi på med neon party i Odderøyhallen. Det blir røykmaskin, strobelys, laser, og selvfølgelig flere UV-lys som lyser opp salen. Ta på noe neon-maling, for nå blir det premie til best malt fjes.
+                    Jakker og bagger/vesker blir sjekket for rusmidler og annet som ikke hører til på arrangementet.
+                    <br><br>
+                    <strong>Sted:</strong> Odderøyhallen<br>
+                    <strong>Tid:</strong> 20:00 – 23:59<br>
+                    <strong>Alder:</strong> VGS (uvedkommede blir vist bort fra området)<br>
+                    <strong>Kiosk:</strong> Pølse med brød, brus, energidrikk etc.<br>
+                    <strong>Dresskode:</strong> Noe som lyser opp med UV-lys (Hvitt/knæsj, neonmaling.)<br>
+                    Det vil også være muligheter for å bli malt i maleboden. 30kr hvis du gjør det selv og 50kr hvis du vil bli malt.<br>
+                    <strong>Inngangspris:</strong> 199 kr (early bird) 249 kr (ordinær)<br>
+                    <strong>NB:</strong> Kun vipps og kontant
+                </p>
+            </div>
+        </details>
+    </section>
+
+    <div id="dynamic-content" class="loading">
+        <div class="spinner" style="visibility: hidden; margin: 20px auto;"></div>
+    </div>
+</main>
+
+<footer class="bg-neutral-800 text-white text-center p-4">
+    <p>&copy; 2024 Mystes AS. All rights reserved.</p>
+</footer>
+
+<script>
+    document.body.addEventListener('htmx:beforeSwap', function(evt) {
+        if (evt.target.id === 'dynamic-content') {
+            document.body.classList.add('loading');
+        }
+    });
+
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+        if (evt.target.id === 'dynamic-content') {
+            document.body.classList.remove('loading');
+        }
+    });
+</script>
+</body>
+</html>
