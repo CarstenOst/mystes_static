@@ -3,37 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plan your perfect party with Mystes AS From themed birthdays to elegant corporate events, we make every moment memorable.">
-    <meta name="keywords" content="party planning, event management, birthday parties, corporate events, themed events">
-    <title>Mystes AS - Neon Party</title>
+    <meta name="description"
+          content="A party is only as good as the last one.">
+    <meta name="keywords" content="party planning, event management, neon party, Odderøyhallen, Kristiansand, VGS, Ungdomsskole">
+    <title>Odderøyhallen - Neon Party</title>
     <link rel="canonical" href="https://mystes.no/">
     <link rel="icon" href="/public/img/logo.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Yes im lazy, and should use tailwind properly, but it's good enough -->
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
-<div class="relative">
-    <img src="/public/img/image%20(6).jpg" alt="Glow Event" class="w-full h-screen object-cover">
-    <div class="absolute inset-0 bg-black bg-opacity-10 flex flex-col justify-end">
-        <div class="flex justify-center mb-10">
-            <div class="bg-transparent relative rounded-lg backdrop-filter backdrop-blur-lg">
-                <div class="relative z-10 text-center py-4 px-6">
-                    <h1 class="text-white text-3xl font-bold">Odderøyhallen</h1>
-                    <p class="text-white text-lg mt-2">VGS - 15. november</p>
-                    <p class="text-white text-lg">Ungdomsskole - 16. november</p>
-                </div>
-            </div>
+<div class="relative h-screen">
+    <!-- Initial Background Image -->
+    <img src="/public/img/image%20(6).jpg" alt="Neon Party, Odderøyhallen, Kristiansand" class="w-full h-full object-cover absolute inset-0 z-0"
+         id="bg-image">
+
+    <!-- Lazy-loaded Video -->
+    <div
+            hx-get="bg_video.html" hx-trigger="load once"
+            class="w-full h-full absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out"
+            id="video-container"
+    ></div>
+
+    <!-- Content Overlay -->
+    <div class="absolute w-full h-full inset-0 flex flex-col justify-end items-center z-20">
+        <div class="bg-transparent rounded-lg backdrop-filter backdrop-blur-lg mb-10 px-6 py-4 text-center">
+            <h1 class="text-white text-3xl font-bold">Odderøyhallen</h1>
+            <p class="text-white text-lg mt-2">VGS - 15. november</p>
+            <p class="text-white text-lg">Ungdomsskole - 16. november</p>
         </div>
-        <!-- Buy Button with Blurry Background -->
-        <div class="flex justify-center mb-20">
-            <a href="https://hpla.no/early_mystes">
-                <button class="bg-white bg-opacity-20 backdrop-blur-lg text-white font-semibold py-3 px-6 rounded-lg hover:bg-opacity-30 transition duration-300 ease-in-out">
-                    Kjøp billett
-                </button>
-            </a>
-        </div>
+
+        <!-- Buy Button -->
+        <a href="https://hpla.no/early_mystes" class="mb-20">
+            <button class="bg-white bg-opacity-20 backdrop-blur-lg text-white font-semibold py-3 px-6 rounded-lg hover:bg-opacity-30 transition duration-300 ease-in-out">
+                Kjøp billett
+            </button>
+        </a>
     </div>
 </div>
+
+<script>
+    document.addEventListener("htmx:afterOnLoad", function () {
+        const videoContainer = document.getElementById("video-container");
+
+        videoContainer.classList.remove("opacity-0");
+        videoContainer.classList.add("opacity-100");
+    });
+</script>
+
 </body>
 </html>
