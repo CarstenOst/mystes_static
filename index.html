@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="A party is only as good as the last one.">
-    <meta name="keywords" content="party planning, event management, neon party, Odderøyhallen, Kristiansand, VGS, Ungdomsskole">
+          content="A party is only as good as the last one. Bli med på Neon Party i Odderøyhallen 15. november for VGS-elever og 16. november for ungdomsskule-elever!">
+    <meta name="keywords" content="party planning, event management, neon party, Odderøyhallen, Kristiansand, VGS, Ungdomsskole, 15. november, 16. november, stemning, fest, 2024, noe å finne på,">
     <title>Odderøyhallen - Neon Party</title>
     <link rel="canonical" href="https://mystes.no/">
     <link rel="icon" href="/public/img/logo.jpg" type="image/jpg">
@@ -22,7 +22,7 @@
     <!-- Lazy-loaded Video -->
     <div
             hx-get="bg_video.html" hx-trigger="load once"
-            class="w-full h-full absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out"
+            class="w-full h-full absolute inset-0"
             id="video-container"
     ></div>
 
@@ -42,15 +42,6 @@
         </a>
     </div>
 </div>
-
-<script>
-    document.addEventListener("htmx:afterOnLoad", function () {
-        const videoContainer = document.getElementById("video-container");
-
-        videoContainer.classList.remove("opacity-0");
-        videoContainer.classList.add("opacity-100");
-    });
-</script>
 
 </body>
 </html>
