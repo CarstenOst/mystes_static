@@ -61,22 +61,38 @@
         const videoContainer = document.getElementById("video-container");
         const video = videoContainer.querySelector("video");
 
-        // Ensure the video starts playing in Safari after being loaded by htmx
-        if (video && video.paused) {
-            video.play().catch(error => {
-                console.error("Autoplay prevented:", error);
-            });
-        }
         if (video) {
-            // Add the fade-in class to the video initially
             video.classList.add("fade-in");
 
-            // Attempt to play the video and add visible class to trigger fade-in
-            video.play().then(() => {
-                video.classList.add("visible"); // Start the fade-in transition
-            }).catch(error => {
-                console.error("Autoplay prevented:", error);
-            });
+            // iOS Autoplay workaround with click and scroll events
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            function attemptAutoplay() {
+                video.play().then(() => {
+                    video.classList.add("visible"); // Start fade-in transition
+                    removeEventListeners(); // Remove both listeners once video plays
+                }).catch(error => {
+                    console.error("Autoplay prevented:", error);
+                });
+            }
+
+            function removeEventListeners() {
+                window.removeEventListener("scroll", attemptAutoplay);
+                videoContainer.removeEventListener("click", attemptAutoplay);
+            }
+
+            if (isIOS && video.paused) {
+                // Trigger autoplay on either scroll or click
+                window.addEventListener("scroll", attemptAutoplay);
+                videoContainer.addEventListener("click", attemptAutoplay);
+            } else {
+                // For non-iOS, play immediately
+                video.play().then(() => {
+                    video.classList.add("visible");
+                }).catch(error => {
+                    console.error("Autoplay prevented:", error);
+                });
+            }
         }
 
     });
