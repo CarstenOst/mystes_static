@@ -5,14 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="A party is only as good as the last one. Bli med på Neon Party i Odderøyhallen 15. november for VGS-elever og 16. november for ungdomsskule-elever!">
-    <meta name="keywords" content="party planning, event management, neon party, Odderøyhallen, Kristiansand, VGS, Ungdomsskole, 15. november, 16. november, stemning, fest, 2024, noe å finne på,">
+    <meta name="keywords" content="neon party 2024, Odderøyhallen, Neon Party Kristiansand, VGS, Ungdomsskole, 15. november, 16. november, stemning, fest, 2024, noe å finne på, strobe, laser, røyk, morro">
     <title>Odderøyhallen - Neon Party</title>
     <link rel="canonical" href="https://mystes.no/">
     <link rel="icon" href="/public/img/logo.jpg" type="image/jpg">
-    <script src="https://cdn.tailwindcss.com"></script> <!-- Yes im lazy, and should use tailwind properly, but it's good enough -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.2"></script>
 </head>
+<style>
+    .fade-in {
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+    }
+    .visible {
+        opacity: 1;
+    }
+</style>
 <body class="bg-gray-100 flex flex-col min-h-screen">
+
+
 
 <div class="relative h-screen">
     <!-- Initial Background Image -->
@@ -21,7 +32,7 @@
 
     <!-- Lazy-loaded Video -->
     <div
-            hx-get="bg_video.html" hx-trigger="load once"
+            hx-get="/bg_video.html" hx-trigger="revealed"
             class="w-full h-full absolute inset-0"
             id="video-container"
     ></div>
@@ -42,6 +53,51 @@
         </a>
     </div>
 </div>
+
+<!-- Safari Autoplay Compatibility Script -->
+
+<script>
+    document.addEventListener("htmx:afterOnLoad", function(evt) {
+        const videoContainer = document.getElementById("video-container");
+        const video = videoContainer.querySelector("video");
+
+        if (video) {
+            video.classList.add("fade-in");
+
+            // iOS Autoplay workaround with click and scroll events
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            function attemptAutoplay() {
+                video.play().then(() => {
+                    video.classList.add("visible"); // Start fade-in transition
+                    removeEventListeners(); // Remove both listeners once video plays
+                }).catch(error => {
+                    console.error("Autoplay prevented:", error);
+                });
+            }
+
+            function removeEventListeners() {
+                window.removeEventListener("scroll", attemptAutoplay);
+                videoContainer.removeEventListener("click", attemptAutoplay);
+            }
+
+            if (isIOS && video.paused) {
+                // Trigger autoplay on either scroll or click
+                window.addEventListener("scroll", attemptAutoplay);
+                videoContainer.addEventListener("click", attemptAutoplay);
+            } else {
+                // For non-iOS, play immediately
+                video.play().then(() => {
+                    video.classList.add("visible");
+                }).catch(error => {
+                    console.error("Autoplay prevented:", error);
+                });
+            }
+        }
+
+    });
+</script>
+
 
 </body>
 </html>
