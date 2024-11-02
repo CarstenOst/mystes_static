@@ -53,18 +53,30 @@
         </a>
     </div>
 </div>
-<footer class="bg-neutral-900 text-white text-center p-6 ">
+<footer class="bg-neutral-900 text-white text-center p-6">
     <div class="container mx-auto">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://www.facebook.com/profile.php?id=61566832765563&sk=events" class="text-purple-400 hover:text-purple-500 transition duration-300">Facebook</a>
-            <a href="https://www.instagram.com/mystesas/" class="text-purple-400 hover:text-purple-500 transition duration-300">Instagram</a>
-            <a href="https://www.snapchat.com/add/a_mystes?share_id=1O0P2YBKRrg&locale=en-US" class="text-purple-400 hover:text-purple-500 transition duration-300">Snapchat</a>
-            <a class="text-purple-400 hover:text-purple-500 transition duration-300">mystesas@gmail.com</a>
+        <!-- Use flex-col on small screens and flex-row on larger screens -->
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-4">
+            <a href="https://www.facebook.com/profile.php?id=61566832765563&sk=events" class="text-purple-400 hover:text-purple-500 transition duration-300">
+                Facebook
+            </a>
+            <a href="https://www.instagram.com/mystesas/" class="text-purple-400 hover:text-purple-500 transition duration-300">
+                Instagram
+            </a>
+            <a href="https://www.snapchat.com/add/a_mystes?share_id=1O0P2YBKRrg&locale=en-US" class="text-purple-400 hover:text-purple-500 transition duration-300">
+                Snapchat
+            </a>
+            <a href="mailto:mystesas@gmail.com" class="text-purple-400 hover:text-purple-500 transition duration-300">
+                mystesas@gmail.com
+            </a>
         </div>
-        <p class="text-gray-400">&copy; 2024 Mystes AS. All rights reserved.</p>
-        <!-- Vi bruker ikke noe jævla cookies :) <p class="text-gray-500 text-sm">Personvern | Vilkår</p>-->
+        <!-- Scale the text size slightly on larger screens -->
+        <p class="text-gray-400 text-sm sm:text-base">&copy; 2024 Mystes AS. All rights reserved.</p>
+        <!-- I'm not using any cookies -->
+        <!-- <p class="text-gray-500 text-xs sm:text-sm">Personvern | Vilkår</p> -->
     </div>
 </footer>
+
 
 <!-- Safari Autoplay Compatibility Script -->
 <script>
